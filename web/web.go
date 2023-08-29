@@ -13,5 +13,5 @@ func Run() {
 
 	routes.Routes(r)
 
-	http.ListenAndServe(":"+utils.GetEnv("PORT"), r)
+	http.ListenAndServe(":"+utils.GetEnv("WEB_PORT"), r)
 }

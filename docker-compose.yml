@@ -5,15 +5,16 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile
     ports:
-      - "4000:4000"
+      - ${WEB_PORT}:${WEB_PORT}
     volumes:
       - '.:/app'
 
-  dynamodb:
-    image: amazon/dynamodb-local:latest
+  firestore:
+    build: ./docker/firestore
+    env_file:
+      - .env
     ports:
-      - 4004:4004
-    volumes:
-      - ./docker/dynamodb:/home/dynamodblocal/data
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+      - "8787:8787"
+      - "4000:4000"
+      - "8788:8787"
   
