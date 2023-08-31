@@ -13,5 +13,5 @@ RUN go mod download
 RUN go install github.com/cosmtrek/air@latest
 RUN go install github.com/cespare/reflex@latest
 
-# CMD ["reflex", "-c", "reflex.conf"]
+CMD ["reflex", "-c", "reflex.conf"]
 CMD ["air"]

@@ -7,7 +7,7 @@ func getEnv() *os.File {
 	if err != nil {
 		panic(err)
 	}
-	file, err := os.Open(currentDir + "/.env")
+	file, err := os.Open(currentDir + "/../.env")
 
 	if err != nil {
 		panic(err)

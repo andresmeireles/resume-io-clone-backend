@@ -1,9 +1,11 @@
 package sql
 
+import "github.com/andresmeireles/resume/utils"
+
 type User struct {
 	ID        uint `gorm:"primaryKey"`
-	name      string
-	email     string
+	Name      string
+	Email     string
 	password  string
 	hash      string
 	expiresAt int
@@ -11,8 +13,8 @@ type User struct {
 
 func (u User) create(name, email, password string) (*User, error) {
 	user := User{
-		name:      name,
-		email:     email,
+		Name:      name,
+		Email:     email,
 		password:  password,
 		hash:      "",
 		expiresAt: 0,
@@ -35,7 +37,7 @@ func (u User) getAll() ([]User, error) {
 	return users, nil
 }
 
-func (u User) getById(id int) (*User, error) {
+func (u User) GetById(id int) (*User, error) {
 	db := Db()
 	var user User
 	result := db.First(&user, id)
@@ -45,19 +47,20 @@ func (u User) getById(id int) (*User, error) {
 	return &user, nil
 }
 
-func (u User) update(id int, name, email string) (*User, error) {
+func (u User) FindByEmail(email string) (*User, error) {
 	db := Db()
 	var user User
-	result := db.Find(&user, id)
+	result := db.Where("email = ?", email).First(&user)
 	if result.Error != nil {
 		return nil, result.Error
 	}
-	if name != "" && user.name != name {
-		user.name = name
-	}
-	if email != "" && user.email != email {
-		user.email = email
-	}
-	db.Save(&user)
 	return &user, nil
+}
+
+func (u User) VerifyPassword(password string) bool {
+	hashPassword, err := utils.PasswordHash(password)
+	if err != nil {
+		return false
+	}
+	return hashPassword == u.hash
 }

@@ -1,6 +1,7 @@
 version: '3'
 services:
   goweb:
+    container_name: goweb
     build:
       context: .
       dockerfile: ./docker/Dockerfile
