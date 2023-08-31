@@ -1,4 +1,4 @@
-package database
+package nosql
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 )
 
 func connect(ctx context.Context, operation func(ctx context.Context, client *firestore.Client) interface{}) interface{} {
-	conf := &firebase.Config{ProjectID: utils.GetEnv("FIRESTORE_PROJECT_ID")}
+	conf := &firebase.Config{ProjectID: utils.GetEnvAsString("FIRESTORE_PROJECT_ID")}
 	app, err := firebase.NewApp(ctx, conf)
 	if err != nil {
 		log.Fatalln(err)

@@ -5,7 +5,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func non_auth_routes(r *chi.Mux) {
+func nonAuthRoutes(r *chi.Mux) {
 	r.Get("/login", controller.Login)
 	r.Get("/logout", controller.Logout)
 }

@@ -5,6 +5,6 @@ import (
 )
 
 func Routes(r *chi.Mux) {
-	non_auth_routes(r)
-	private_routes(r)
+	nonAuthRoutes(r)
+	privateRoutes(r)
 }

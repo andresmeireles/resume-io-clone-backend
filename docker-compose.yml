@@ -1,6 +1,6 @@
 version: '3'
 services:
-  goapp:
+  goweb:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
@@ -8,6 +8,13 @@ services:
       - ${WEB_PORT}:${WEB_PORT}
     volumes:
       - '.:/app'
+
+  # gocli:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/cli/Dockerfile
+  #   volumes:
+  #     - '.:/app'
 
   firestore:
     build: ./docker/firestore

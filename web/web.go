@@ -13,5 +13,10 @@ func Run() {
 
 	routes.Routes(r)
 
-	http.ListenAndServe(":"+utils.GetEnv("WEB_PORT"), r)
+	port := utils.GetEnv("WEB_PORT")
+	if port == "" {
+		panic("WEB_PORT is not set")
+	}
+
+	http.ListenAndServe(":"+port.(string), r)
 }
