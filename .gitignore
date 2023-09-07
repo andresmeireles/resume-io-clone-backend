@@ -2,3 +2,5 @@ tmp/
 docker/dynamodb
 
 .env
+
+.vscode

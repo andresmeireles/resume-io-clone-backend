@@ -7,7 +7,7 @@ import (
 )
 
 func TestPasswordHash(t *testing.T) {
-	t.Run("PasswordHash", func(t *testing.T) {
+	t.Run("PasswordHashTest", func(t *testing.T) {
 		cmd, err := PasswordHash("password")
 		if err != nil {
 			t.Error(err)

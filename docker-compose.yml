@@ -10,12 +10,13 @@ services:
     volumes:
       - '.:/app'
 
-  # gocli:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/cli/Dockerfile
-  #   volumes:
-  #     - '.:/app'
+  gocli:
+    container_name: gocli
+    build:
+      context: .
+      dockerfile: ./docker/cli/Dockerfile
+    volumes:
+      - '.:/app'
 
   firestore:
     build: ./docker/firestore
@@ -25,4 +26,14 @@ services:
       - "8787:8787"
       - "4000:4000"
       - "8788:8787"
+
+  postgres:
+    image: postgres:latest
+    working_dir: /app
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
   

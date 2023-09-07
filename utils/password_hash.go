@@ -9,9 +9,9 @@ import (
 
 func PasswordHash(password string) (string, error) {
 	if strings.Trim(password, "") == "" {
-		return "", errors.New("Password cannot be empty")
+		return "", errors.New("Password must not be empty")
 	}
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password[:72]), bcrypt.DefaultCost)
 	if err != nil {
 		return "", err
 	}
