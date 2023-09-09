@@ -3,11 +3,11 @@ package user
 import (
 	"github.com/andresmeireles/resume/internal/db/sql"
 	"github.com/andresmeireles/resume/internal/db/sql/model"
-	"github.com/andresmeireles/resume/utils"
+	pw "github.com/andresmeireles/resume/utils/password"
 )
 
 func Create(db sql.DBInterface, name, password, email string) error {
-	hashPassword, err := utils.PasswordHash(password)
+	hashPassword, err := pw.PasswordHash(password)
 	if err != nil {
 		return err
 	}

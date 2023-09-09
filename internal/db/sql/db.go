@@ -3,7 +3,7 @@ package sql
 import (
 	"fmt"
 
-	"github.com/andresmeireles/resume/utils"
+	"github.com/andresmeireles/resume/utils/env"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
@@ -21,10 +21,10 @@ func (d Db) Instance() *sqlx.DB {
 }
 
 func connect() *sqlx.DB {
-	user := utils.GetEnvAsString("DB_USER")
-	password := utils.GetEnvAsString("DB_PASSWORD")
-	dbName := utils.GetEnvAsString("DB_NAME")
-	host := utils.GetEnvAsString("DB_HOST")
+	user := env.GetEnvAsString("DB_USER")
+	password := env.GetEnvAsString("DB_PASSWORD")
+	dbName := env.GetEnvAsString("DB_NAME")
+	host := env.GetEnvAsString("DB_HOST")
 	dsn := fmt.Sprintf("user=%s password=%s dbname=%s host=%s sslmode=disable",
 		user, password, dbName, host,
 	)

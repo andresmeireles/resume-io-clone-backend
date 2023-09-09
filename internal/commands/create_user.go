@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/andresmeireles/resume/internal/db/sql"
-	"github.com/andresmeireles/resume/internal/user"
+	"github.com/andresmeireles/resume/internal/service/user"
 	"github.com/spf13/cobra"
 )
 

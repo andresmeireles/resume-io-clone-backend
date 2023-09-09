@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/andresmeireles/resume/utils"
+	"github.com/andresmeireles/resume/utils/password"
 )
 
 type User struct {
@@ -36,7 +36,7 @@ func (u User) InsertFields() map[string]interface{} {
 
 func (u *User) SetHash() (*User, error) {
 	expiresAt := time.Now().Add(time.Hour * 24 * 30)
-	hash, hashErr := utils.PasswordHash(u.Name + u.Password + expiresAt.String())
+	hash, hashErr := password.PasswordHash(u.Name + u.Password + expiresAt.String())
 
 	if hashErr != nil {
 		return nil, hashErr

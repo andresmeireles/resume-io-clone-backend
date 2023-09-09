@@ -3,7 +3,8 @@ package sql
 import (
 	"fmt"
 
-	"github.com/andresmeireles/resume/utils"
+	"github.com/andresmeireles/resume/utils/env"
+	"github.com/andresmeireles/resume/utils/path"
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
@@ -27,9 +28,9 @@ func getMigrate() *migrate.Migrate {
 
 	defer db.Close()
 
-	migrationsFolder := utils.GetRootDir() + "/db/sql/migration"
+	migrationsFolder := path.GetRootDir() + "/db/sql/migration"
 
-	dbName := utils.GetEnvAsString("DB_NAME")
+	dbName := env.GetEnvAsString("DB_NAME")
 
 	if dbName == "" {
 		panic("DB_NAME is not set")
