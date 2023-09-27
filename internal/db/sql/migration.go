@@ -3,8 +3,8 @@ package sql
 import (
 	"fmt"
 
-	"github.com/andresmeireles/resume/utils/env"
-	"github.com/andresmeireles/resume/utils/path"
+	"github.com/andresmeireles/resume/internal/utils/env"
+	"github.com/andresmeireles/resume/internal/utils/path"
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"

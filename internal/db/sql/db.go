@@ -3,7 +3,7 @@ package sql
 import (
 	"fmt"
 
-	"github.com/andresmeireles/resume/utils/env"
+	"github.com/andresmeireles/resume/internal/utils/env"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
@@ -20,6 +20,10 @@ func (d Db) Instance() *sqlx.DB {
 	return d.db
 }
 
+func (d *Db) Close() error {
+	return d.db.Close()
+}
+
 func connect() *sqlx.DB {
 	user := env.GetEnvAsString("DB_USER")
 	password := env.GetEnvAsString("DB_PASSWORD")
@@ -30,6 +34,11 @@ func connect() *sqlx.DB {
 	)
 	connect, err := sqlx.Connect("postgres", dsn)
 	if err != nil {
+		panic(err)
+	}
+
+	if err := connect.Ping(); err != nil {
+		fmt.Println("internal error")
 		panic(err)
 	}
 

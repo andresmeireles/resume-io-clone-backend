@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/andresmeireles/resume/utils/password"
+	"github.com/andresmeireles/resume/internal/utils/password"
 )
 
 type User struct {

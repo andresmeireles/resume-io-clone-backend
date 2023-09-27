@@ -1,23 +1,18 @@
 package resume
 
 import (
-	"context"
-	"strconv"
-
 	"cloud.google.com/go/firestore"
-	"github.com/andresmeireles/resume/internal/db/nosql"
+	collection "github.com/andresmeireles/resume/internal/db/nosql/collection/user"
 	"github.com/andresmeireles/resume/internal/db/nosql/schema"
 	"github.com/andresmeireles/resume/internal/db/sql/model"
 )
 
-const (
-	beginner = "beginner"
-)
-
-func Add(client nosql.NoSqlDbInterface, user model.User, skill schema.Skill) (*firestore.WriteResult, error) {
-	return client.Create(context.Background(), "users", strconv.Itoa(int(*user.GetId())), skill.ToMap())
+func AddSkill(userCollection *collection.User, user model.User, skill schema.Skill) (*firestore.WriteResult, error) {
+	return userCollection.AddSkill(int(*user.Id), skill)
 }
 
-func Update() {}
+func UpdateSkill(userCollection *collection.User, user model.User, skill schema.Skill) error {
+	return userCollection.UpdateSkill(int(*user.Id), skill)
+}
 
-func Remove() {}
+func RemoveSkill() {}

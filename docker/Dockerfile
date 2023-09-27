@@ -9,8 +9,10 @@ COPY .. .
 
 RUN go mod download
 
-# # Install "air" for auto-reloading
+# Install "air" for auto-reloading
 RUN go install github.com/cosmtrek/air@latest
+# Install delve debuger
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 CMD ["go build", "-o", "tmp/cli", "cmd/cli"]
 

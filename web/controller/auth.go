@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/andresmeireles/resume/internal/auth"
 	"github.com/andresmeireles/resume/internal/db/sql"
 	"github.com/andresmeireles/resume/internal/db/sql/model"
+	"github.com/andresmeireles/resume/internal/service/auth"
 	"github.com/go-chi/render"
 )
 

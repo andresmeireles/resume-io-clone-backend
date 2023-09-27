@@ -5,10 +5,12 @@ import (
 )
 
 func (d *Db) GetOneBy(model Model, identification, value string) error {
-	db := d.db
+	db := d.Instance()
 
-	defer db.Close()
+	// defer db.Close()
 
 	query := fmt.Sprintf("SELECT * FROM %s WHERE %s = $1", model.TableName(), identification)
-	return db.Get(model, query, value)
+	err := db.Get(model, query, value)
+
+	return err
 }

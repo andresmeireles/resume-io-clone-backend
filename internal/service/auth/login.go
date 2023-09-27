@@ -12,6 +12,8 @@ import (
 func LoginWithEmail(db sql.DBInterface, email, password string) (string, error) {
 	user := &model.User{}
 
+	defer db.Close()
+
 	e := db.GetOneBy(user, "email", email)
 
 	if e != nil {

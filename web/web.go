@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/andresmeireles/resume/utils/env"
+	"github.com/andresmeireles/resume/internal/utils/env"
 	"github.com/andresmeireles/resume/web/routes"
 	"github.com/go-chi/chi/v5"
 )

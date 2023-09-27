@@ -3,7 +3,7 @@ package user
 import (
 	"github.com/andresmeireles/resume/internal/db/sql"
 	"github.com/andresmeireles/resume/internal/db/sql/model"
-	pw "github.com/andresmeireles/resume/utils/password"
+	pw "github.com/andresmeireles/resume/internal/utils/password"
 )
 
 func Create(db sql.DBInterface, name, password, email string) error {

@@ -8,4 +8,5 @@ type DBInterface interface {
 	Instance() *sqlx.DB
 	GetOneBy(model Model, identification, value string) error
 	UpdateModel(model Model) error
+	Close() error
 }
