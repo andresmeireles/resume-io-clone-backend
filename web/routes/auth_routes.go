@@ -6,7 +6,7 @@ import (
 
 	"github.com/andresmeireles/resume/internal/db/sql"
 	"github.com/andresmeireles/resume/internal/db/sql/model"
-	"github.com/andresmeireles/resume/web/controller"
+	"github.com/andresmeireles/resume/web/controller/resume"
 	"github.com/andresmeireles/resume/web/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
@@ -27,8 +27,19 @@ func privateRoutes(r chi.Router) {
 		render.JSON(w, r, user)
 	})
 
-	r.Post("/skill", controller.AddSkill)
-	r.Put("/skill", controller.UpdateSkill)
+	r.Get("/resume", resume.ResumeData)
 
-	r.Post("/personal", controller.AddPersonalData)
+	r.Post("/skill", resume.AddSkill)
+	r.Put("/skill", resume.UpdateSkill)
+
+	r.Post("/social", resume.AddSkill)
+	r.Put("/social", resume.UpdateSkill)
+
+	r.Post("/education", resume.AddEducation)
+	r.Put("/education", resume.UpdateEducation)
+
+	r.Post("/experience", resume.AddExperience)
+	r.Put("/experience", resume.UpdateExperience)
+
+	r.Post("/personal", resume.AddPersonalData)
 }
