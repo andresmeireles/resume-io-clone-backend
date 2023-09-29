@@ -1,7 +1,7 @@
 package schema
 
 type Professional struct {
-	DesiredJob   string
+	DesiredJob   string `json:"desired_job"`
 	Presentation string
 }
 

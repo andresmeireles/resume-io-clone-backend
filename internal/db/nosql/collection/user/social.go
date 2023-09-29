@@ -3,6 +3,7 @@ package user
 import (
 	"context"
 	"errors"
+	"strings"
 
 	"cloud.google.com/go/firestore"
 	"github.com/andresmeireles/resume/internal/db/nosql/schema"
@@ -13,7 +14,9 @@ func (u User) getSocialCollection(userId int) *firestore.CollectionRef {
 }
 
 func (u User) AddSocial(userId int, social schema.Social) (*firestore.WriteResult, error) {
-	return u.getSocialCollection(userId).Doc(social.Name).Set(context.TODO(), social.ToMap())
+	name := strings.ReplaceAll(social.Name, " ", "-")
+
+	return u.getSocialCollection(userId).Doc(name).Set(context.TODO(), social.ToMap())
 }
 
 func (u User) GetSocial(userId int) ([]schema.Social, error) {

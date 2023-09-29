@@ -3,9 +3,10 @@ package schema
 type Experience struct {
 	Job         string
 	Company     string
-	StartDate   string
-	EndDate     string
+	StartDate   string  `json:"start_date"`
+	EndDate     *string `json:"end_date"`
 	Description string
+	Hide        bool
 }
 
 func (e *Experience) ToMap() map[string]interface{} {
@@ -15,5 +16,6 @@ func (e *Experience) ToMap() map[string]interface{} {
 		"start_date":  e.StartDate,
 		"end_date":    e.EndDate,
 		"description": e.Description,
+		"hide":        e.Hide,
 	}
 }

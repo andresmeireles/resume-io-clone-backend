@@ -32,8 +32,8 @@ func privateRoutes(r chi.Router) {
 	r.Post("/skill", resume.AddSkill)
 	r.Put("/skill", resume.UpdateSkill)
 
-	r.Post("/social", resume.AddSkill)
-	r.Put("/social", resume.UpdateSkill)
+	r.Post("/social", resume.AddSocial)
+	r.Put("/social", resume.UpdateSocial)
 
 	r.Post("/education", resume.AddEducation)
 	r.Put("/education", resume.UpdateEducation)

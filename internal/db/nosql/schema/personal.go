@@ -1,8 +1,8 @@
 package schema
 
 type Personal struct {
-	FirstName string
-	LastName  string
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
 	Email     string
 	Age       int
 	Gender    string

@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
 
 	"cloud.google.com/go/firestore"
 	"github.com/andresmeireles/resume/internal/db/nosql/schema"
@@ -14,7 +15,10 @@ func (u User) getEducationCollection(userId int) *firestore.CollectionRef {
 }
 
 func (u User) AddEducation(userId int, education schema.Education) (*firestore.WriteResult, error) {
-	return u.getEducationCollection(userId).Doc(fmt.Sprintf("%s-%s", education.Degree, education.Institution)).Set(context.TODO(), education.ToMap())
+	degree := strings.ReplaceAll(education.Degree, " ", "-")
+	institution := strings.ReplaceAll(education.Institution, " ", "-")
+
+	return u.getEducationCollection(userId).Doc(fmt.Sprintf("%s-%s", degree, institution)).Set(context.TODO(), education.ToMap())
 }
 
 func (u User) GetEducation(userId int) ([]schema.Education, error) {

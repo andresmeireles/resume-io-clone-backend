@@ -3,8 +3,8 @@ package schema
 type Education struct {
 	Degree      string
 	Institution string
-	StartDate   string
-	EndDate     string
+	StartDate   string `json:"start_date"`
+	EndDate     string `json:"end_date"`
 	Description string
 	Hide        bool
 }
